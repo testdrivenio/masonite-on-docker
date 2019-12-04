@@ -1,0 +1,29 @@
+{% if exists('auth/base') %}
+    {% extends 'auth/base.html' %}
+{% else %}
+    {% extends 'base.html' %}
+{% endif %}
+
+{% block css %}
+<!-- Application CSS -->
+<link href="/static/style.css" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block title %}
+    Welcome To {{ config('application.name', 'Masonite none') }}
+{% endblock %}
+
+{% block content %}
+<html>
+  <body>
+  <form action="/" method="POST" enctype="multipart/form-data">
+    {{ csrf_field }}
+    <input type="file" name="image_upload">
+    <input type="submit" value="submit" />
+  </form>
+  {% if image_url %}
+    <p>File uploaded at: <a href="{{ image_url }}">{{ image_url }}</a></p>
+  {% endif %}
+  </body>
+</html>
+{% endblock %}

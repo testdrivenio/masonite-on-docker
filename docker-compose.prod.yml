@@ -1,0 +1,34 @@
+version: '3.7'
+
+services:
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile.prod
+    command: gunicorn --bind 0.0.0.0:8000 wsgi:application
+    volumes:
+      - storage_volume:/home/app/web/storage
+    expose:
+      - 8000
+    env_file:
+      - .env.prod
+    depends_on:
+      - db
+  db:
+    image: postgres:12.1-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - .env.prod.db
+  nginx:
+    build: ./nginx
+    volumes:
+      - storage_volume:/home/app/web/storage
+    ports:
+      - 1337:80
+    depends_on:
+      - web
+
+volumes:
+  postgres_data:
+  storage_volume:
