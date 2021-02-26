@@ -1,15 +1,18 @@
 
 <p align="center">
-<img src="https://i.imgur.com/rEXcoMn.png" width="160px"> 
+<img src="https://i.imgur.com/rEXcoMn.png" width="160px">
 </p>
 
 <p align="center">
 
 <img src="https://travis-ci.org/MasoniteFramework/masonite.svg?branch=master">
-<img src="https://img.shields.io/badge/python-3.4+-blue.svg" alt="Python Version"> <img src="http://pepy.tech/badge/masonite?1" alt="License">  <img src="https://img.shields.io/github/license/MasoniteFramework/masonite.svg" alt="License"> 
+<img src="https://img.shields.io/badge/python-3.4+-blue.svg" alt="Python Version"> <img src="http://pepy.tech/badge/masonite?1" alt="License">  <img src="https://img.shields.io/github/license/MasoniteFramework/masonite.svg" alt="License">
 <img src="https://coveralls.io/repos/github/MasoniteFramework/core/badge.svg?branch=master#" alt="License">
 
 </p>
+
+ **NOTE: This repository is the general shell of the framework. This repository is responsible for managing the installation of all new applications. All core framework related code has been abstracted out into it's own PYPI package which can be found [in this GitHub Repo](https://github.com/masoniteframework/core).**
+
 
 ## About Masonite
 
@@ -20,7 +23,7 @@ Masonite works hard to be fast and easy from install to deployment so developers
 * Having a simple and expressive routing engine
 * Extremely powerful command line helpers called `craft` commands
 * A simple migration system, removing the "magic" and finger crossing of migrations
-* A great Active Record style ORM called Orator
+* A great Active Record style ORM called Masonite ORM
 * A great filesystem architecture for navigating and expanding your project
 * An extremely powerful Service Container (IOC Container)
 * Service Providers which makes Masonite extremely extendable
@@ -127,7 +130,7 @@ Thank you for those who have contributed to Masonite!
 
 ## License
 
-The Masonite framework is open-sourced software licensed under the MIT license. 
+The Masonite framework is open-sourced software licensed under the MIT license.
 
 ## Hello World
 
@@ -153,7 +156,7 @@ You can easily create new applications with `craft`. To create a new application
 
 ```
 $ pip install masonite-cli
-$ craft new .
+$ craft new project .
 ```
 
 The `.` will tell craft to create the project in the current directory instead of a new directory.
@@ -183,7 +186,7 @@ Now we can run the `craft` command:
 
     $ craft serve
 
-This will run the server at `localhost:8000` and be in an auto-reloading state. When you change files, your server will restart. Navigating to that URL should show the Masonite welcome message. 
+This will run the server at `localhost:8000` and be in an auto-reloading state. When you change files, your server will restart. Navigating to that URL should show the Masonite welcome message.
 
 If that port is blocked you can specify a port by running:
 

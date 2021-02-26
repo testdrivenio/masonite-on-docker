@@ -1,9 +1,9 @@
 """Welcome The User To Masonite."""
 
+from masonite import Upload
 from masonite.view import View
 from masonite.request import Request
 from masonite.controllers import Controller
-from masonite import Upload
 
 
 class WelcomeController(Controller):
@@ -19,8 +19,8 @@ class WelcomeController(Controller):
         Returns:
             masonite.view.View -- The Masonite view class.
         """
-        return view.render('welcome')
+        return view.render("welcome")
 
     def upload(self, upload: Upload, view: View, request: Request):
-        filename = upload.driver('disk').store(request.input('image_upload'))
-        return view.render('welcome', {'image_url': f'/uploads/{filename}'})
+        filename = upload.driver("disk").store(request.input("image_upload"))
+        return view.render("welcome", {"image_url": f"/uploads/{filename}"})

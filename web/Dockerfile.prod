@@ -3,7 +3,7 @@
 ###########
 
 # pull official base image
-FROM python:3.8.0-alpine as builder
+FROM python:3.9.1-alpine as builder
 
 # set work directory
 WORKDIR /usr/src/app
@@ -11,30 +11,29 @@ WORKDIR /usr/src/app
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+ENV TZ=UTC
 
 # install system dependencies
 RUN apk update && apk --no-cache add \
-    libressl-dev libffi-dev gcc musl-dev python3-dev \
-    postgresql-dev \
-    g++
+    libressl-dev libffi-dev gcc musl-dev python3-dev openssl-dev cargo \
+    postgresql-dev
 
 # lint
 RUN pip install --upgrade pip
-RUN pip install flake8
-COPY . /usr/src/app/
-RUN flake8 --ignore=E501,F401 .
+RUN pip install flake8==3.8.4
+COPY . .
+RUN flake8 --ignore=E501,F401,E303,E402 .
 
-# install dependencies
+# install python dependencies
 COPY ./requirements.txt .
 RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt
-RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels masonite-cli==2.2.2
 
 #########
 # FINAL #
 #########
 
 # pull official base image
-FROM python:3.8.0-alpine
+FROM python:3.9.1-alpine
 
 # create directory for the app user
 RUN mkdir -p /home/app
@@ -48,9 +47,12 @@ ENV APP_HOME=/home/app/web
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
+# set environment variables
+ENV TZ=UTC
+
 # install dependencies
 RUN apk update && apk --no-cache add \
-    libressl-dev libffi-dev gcc musl-dev python3-dev \
+    libressl-dev libffi-dev gcc musl-dev python3-dev openssl-dev cargo \
     postgresql-dev
 COPY --from=builder /usr/src/app/wheels /wheels
 COPY --from=builder /usr/src/app/requirements.txt .

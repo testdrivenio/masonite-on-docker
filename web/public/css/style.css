@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   background-color: #fff;
   color: #636b6f;
   font-family: "Raleway", sans-serif;
@@ -12,9 +13,12 @@ html, body {
 }
 
 .flex-center {
-  align-items: center;
+  -webkit-box-align: center;
+          align-items: center;
+  display: -webkit-box;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+          justify-content: center;
 }
 
 .position-ref {
@@ -48,3 +52,4 @@ html, body {
 .m-b-md {
   margin-bottom: 30px;
 }
+
