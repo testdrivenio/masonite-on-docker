@@ -1,55 +1,50 @@
-"""Providers Configuration File."""
-
 from masonite.providers import (
-    AppProvider,
-    RequestHelpersProvider,
-    AuthenticationProvider,
-    BroadcastProvider,
-    CacheProvider,
-    CsrfProvider,
-    HelpersProvider,
-    MailProvider,
-    QueueProvider,
     RouteProvider,
-    SessionProvider,
-    StatusCodeProvider,
-    UploadProvider,
+    FrameworkProvider,
     ViewProvider,
     WhitenoiseProvider,
+    ExceptionProvider,
+    MailProvider,
+    SessionProvider,
+    QueueProvider,
+    CacheProvider,
+    EventProvider,
+    StorageProvider,
+    HelpersProvider,
+    BroadcastProvider,
+    AuthenticationProvider,
+    AuthorizationProvider,
+    HashServiceProvider,
+    ORMProvider,
 )
-from masonite.logging.providers import LoggingProvider
-from masonite.validation.providers import ValidationProvider
-from masoniteorm.providers import ORMProvider
 
-"""Providers List
-Providers are a simple way to remove or add functionality for Masonite
-The providers in this list are either ran on server start or when a
-request is made depending on the provider. Take some time to can
-learn more more about Service Providers in our documentation
-"""
+
+from masonite.scheduling.providers import ScheduleProvider
+from masonite.notification.providers import NotificationProvider
+from masonite.validation.providers import ValidationProvider
+
+from app.providers import AppProvider
 
 PROVIDERS = [
-    # Framework Providers
-    AppProvider,
-    RequestHelpersProvider,
-    CsrfProvider,
-    AuthenticationProvider,
-    SessionProvider,
-    RouteProvider,
-    StatusCodeProvider,
-    WhitenoiseProvider,
-    ViewProvider,
-    # Optional Framework Providers
-    MailProvider,
-    UploadProvider,
-    QueueProvider,
-    CacheProvider,
-    BroadcastProvider,
+    FrameworkProvider,
     HelpersProvider,
+    RouteProvider,
+    ViewProvider,
+    WhitenoiseProvider,
+    ExceptionProvider,
+    MailProvider,
+    NotificationProvider,
+    SessionProvider,
+    CacheProvider,
+    QueueProvider,
+    ScheduleProvider,
+    EventProvider,
+    StorageProvider,
+    BroadcastProvider,
+    HashServiceProvider,
+    AuthenticationProvider,
     ValidationProvider,
-    # Third Party Providers
-    LoggingProvider,
-    ValidationProvider,
+    AuthorizationProvider,
     ORMProvider,
-    # Application Providers
+    AppProvider,
 ]

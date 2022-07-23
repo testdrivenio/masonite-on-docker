@@ -1,9 +1,7 @@
-"""Web Routes."""
-
-from masonite.routes import Get, Post
+from masonite.routes import Route
 
 ROUTES = [
-    Get("/", "WelcomeController@show").name("welcome"),
-    Get("/sample", "WelcomeController@show").name("welcome"),
-    Post("/", "WelcomeController@upload"),
+    Route.get("/", "WelcomeController@show"),
+    Route.get("/sample", "WelcomeController@show"),
+    Route.post("/", "WelcomeController@upload"),
 ]

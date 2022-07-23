@@ -11,7 +11,7 @@ then
     echo "PostgreSQL started"
 fi
 
-craft migrate:refresh  # you may want to remove this
-craft migrate
+python craft migrate:refresh  # you may want to remove this
+python craft migrate
 
 exec "$@"

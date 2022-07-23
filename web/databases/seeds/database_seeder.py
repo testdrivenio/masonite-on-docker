@@ -1,6 +1,6 @@
 """Base Database Seeder Module."""
-
 from masoniteorm.seeds import Seeder
+
 from .user_table_seeder import UserTableSeeder
 
 

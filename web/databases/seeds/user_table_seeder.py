@@ -1,21 +1,18 @@
-"""User Table Seeder.
-
-You can run this seeder in order to generate users.
-
-    - Each time it is ran it will generate 50 random users.
-    - All users have the password of 'secret'.
-    - You can run the seeder by running: craft seed:run.
-"""
-
+"""UserTableSeeder Seeder."""
 from masoniteorm.seeds import Seeder
+from masonite.facades import Hash
 
-from app.User import User
-from config.factories import factory
+from app.models.User import User
 
 
 class UserTableSeeder(Seeder):
     def run(self):
-        """
-        Run the database seeds.
-        """
-        factory(User, 50).create()
+        """Run the database seeds."""
+        User.create(
+            {
+                "name": "Joe",
+                "email": "user@example.com",
+                "password": Hash.make("secret"),
+                "phone": "+123456789",
+            }
+        )
